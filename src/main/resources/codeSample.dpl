@@ -1,0 +1,11 @@
+struct Person {
+    string name;
+    int age;
+}
+
+void main() {
+    List<Person> people;
+
+    List<Person> adults = people.Where(Person.age >= 18);
+    print("Every adult person: ", adults);
+}
