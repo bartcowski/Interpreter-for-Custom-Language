@@ -4,8 +4,8 @@ struct Person {
 }
 
 void main() {
-    List<Person> people;
+    List[Person] people;
 
-    List<Person> adults = people.Where(Person.age >= 18);
+    List[Person] adults = people.Where(Person.age >= 18);
     print("Every adult person: ", adults);
 }

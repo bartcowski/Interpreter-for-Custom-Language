@@ -1,5 +1,8 @@
 import input.SourceCodeFileHandler;
 import lexer.Lexer;
+import lexer.Token;
+import lexer.TokenType;
+import util.Constants;
 
 public class Main {
 
@@ -9,7 +12,13 @@ public class Main {
         } else {
             SourceCodeFileHandler sourceCodeFileHandler = new SourceCodeFileHandler(args[0]);
             Lexer lexer = new Lexer(sourceCodeFileHandler);
-            lexer.createToken();
+
+            Token token;
+            while (sourceCodeFileHandler.getCurrentChar() != Constants.ETX) {
+                token = lexer.createNextToken();
+                System.out.println(token.toString());
+            }
+
         }
     }
 }
