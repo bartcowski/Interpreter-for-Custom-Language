@@ -1,8 +1,17 @@
-struct Car {
-    string make;
-}
-
 void main() {
-    int x = 1;
-    double y = 23.9001;
+    int x = 123099;
+    int y = -9;
+    double a = 23.9001;
+    double b = 0.00001;
+
+    int z = x * y;
+    double c = a / b;
+
+    if (z != 10 | c == 45.45) {
+        c = c * 10;
+    } elif (z < 555) {
+        z = z + x + y;
+    } else {
+        z = 0;
+    }
 }

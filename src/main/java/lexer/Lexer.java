@@ -28,15 +28,14 @@ public class Lexer {
             return createIdentifierToken(currentTokenPosition);
         } else if (Character.isDigit(c)) {
             return createNumberToken(currentTokenPosition);
-        } else if (c == '"'){
+        } else if (c == '"') {
             return createStringLiteralToken(currentTokenPosition);
-        } else if (simpleTokens.containsKey(c.toString())){
-            source.readNextChar();
-            return new Token(c.toString(), simpleTokens.get(c.toString()), new PositionInFile(currentTokenPosition));
         } else if (simpleTokens.containsKey(c.toString() + source.readAndGetNextChar().toString())) {
             String cc = c.toString() + source.getCurrentChar();
             source.readNextChar();
             return new Token(cc, simpleTokens.get(cc), new PositionInFile(currentTokenPosition));
+        } else if (simpleTokens.containsKey(c.toString())) {
+            return new Token(c.toString(), simpleTokens.get(c.toString()), new PositionInFile(currentTokenPosition));
         } else if (c == Constants.ETX) {
             return new Token("ETX", TokenType.ETX, new PositionInFile(currentTokenPosition));
         } else {
@@ -102,6 +101,7 @@ public class Lexer {
     private String checkAfterDotFound(String number) {
         StringBuilder builder = new StringBuilder(number);
         builder.append(source.getCurrentChar());
+        source.readNextChar();
 
         while (Character.isDigit(source.getCurrentChar())) {
             builder.append(source.getCurrentChar());

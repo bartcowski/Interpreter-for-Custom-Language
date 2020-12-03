@@ -6,6 +6,6 @@ struct Person {
 void main() {
     List[Person] people;
 
-    List[Person] adults = people.Where(Person.age >= 18);
-    print("Every adult person: ", adults);
+    List[Person] people222 = people.Where(Person.age >= 18 & Person.age < 70);
+    print("All people222: ", people222);
 }
