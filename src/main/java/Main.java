@@ -1,4 +1,5 @@
 import input.SourceCodeFileHandler;
+import input.SourceCodeSource;
 import lexer.Lexer;
 import lexer.Token;
 import lexer.TokenType;
@@ -10,7 +11,7 @@ public class Main {
         if (args.length != 1) {
             System.out.println("You need to provide ONE source code file");
         } else {
-            SourceCodeFileHandler sourceCodeFileHandler = new SourceCodeFileHandler(args[0]);
+            SourceCodeSource sourceCodeFileHandler = new SourceCodeFileHandler(args[0]);
             Lexer lexer = new Lexer(sourceCodeFileHandler);
 
             Token token;

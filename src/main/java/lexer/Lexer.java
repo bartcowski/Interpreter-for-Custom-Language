@@ -1,6 +1,7 @@
 package lexer;
 
 import input.SourceCodeFileHandler;
+import input.SourceCodeSource;
 import util.*;
 
 import java.util.Map;
@@ -8,11 +9,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Lexer {
-    private SourceCodeFileHandler source;
+    private SourceCodeSource source;
     private Map<String, TokenType> simpleTokens;
     private Map<String, TokenType> keyWordsTokens;
 
-    public Lexer(SourceCodeFileHandler source) {
+    public Lexer(SourceCodeSource source) {
         this.source = source;
         initializeSimpleTokens();
         initializeKeyWordsTokens();

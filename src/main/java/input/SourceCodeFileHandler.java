@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class SourceCodeFileHandler {
+public class SourceCodeFileHandler implements SourceCodeSource {
     private FileReader reader;
     private PositionInFile currentPosition = new PositionInFile(1, 0);
     private int currentChar;

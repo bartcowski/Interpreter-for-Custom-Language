@@ -4,6 +4,8 @@ import util.Constants;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+// TODO doesn't work - for some reason file path/name string is only acceptable when given as a console argument
+// TODO also: creating test resources directory breaks resource files searching outside tests
 public class SourceCodeFileHandlerTest {
     @Test
     public void shouldReadOneProperCharacter() {
