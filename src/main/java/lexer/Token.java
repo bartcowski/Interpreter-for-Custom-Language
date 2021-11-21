@@ -1,15 +1,15 @@
 package lexer;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
 import util.PositionInFile;
-import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-@ToString(includeFieldNames = true)
+@ToString()
 @Getter
 public class Token {
-    private String lexeme;
-    private TokenType type;
-    private PositionInFile position;
+    private final String lexeme;
+    private final TokenType type;
+    private final PositionInFile position;
 }

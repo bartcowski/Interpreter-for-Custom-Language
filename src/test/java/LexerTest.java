@@ -152,4 +152,24 @@ public class LexerTest {
 
         assertThrows(StringLiteralTooLongException.class, lexer::createNextToken);
     }
+
+    @Test
+    public void shouldThrowNumberFormatExceptionForIntegerOverflow() {
+        char[] chars = {'9','9','9','9','9','9','9','9','9','9',' '};
+
+        source = new InMemoryCodeSource(chars);
+        Lexer lexer = new Lexer(source);
+
+        assertThrows(NumberFormatException.class, lexer::createNextToken);
+    }
+
+    @Test
+    public void shouldThrowNumberFormatExceptionForInvalidDouble() {
+        char[] chars = {'1','2','3','4','.','a','2',' '};
+
+        source = new InMemoryCodeSource(chars);
+        Lexer lexer = new Lexer(source);
+
+        assertThrows(NumberFormatException.class, lexer::createNextToken);
+    }
 }

@@ -1,10 +1,10 @@
 package lexer;
 
 public enum TokenType {
-    STRUCT,
     IF,
     ELIF,
     ELSE,
+    WHILE,
     RETURN,
 
     ID,
@@ -36,8 +36,6 @@ public enum TokenType {
     SEMICOL,
     DOT,
     COMMA,
-    L_TYPEBRACKET,
-    R_TYPEBRACKET,
 
     ETX
 }

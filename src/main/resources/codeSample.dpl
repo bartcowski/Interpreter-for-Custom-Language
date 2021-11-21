@@ -1,11 +1,4 @@
-struct Person {
-    string name;
-    int age;
-}
-
 void main() {
-    List[Person] people;
-
-    List[Person] people222 = people.Where(Person.age >= 18 & Person.age < 70);
-    print("All people222: ", people222);
+    List people = Where(age >= 18 & age < 70);
+    print("All people of chosen age: ", people);
 }

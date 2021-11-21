@@ -1,6 +1,5 @@
 package lexer;
 
-import input.SourceCodeFileHandler;
 import input.SourceCodeSource;
 import util.*;
 
@@ -9,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Lexer {
-    private SourceCodeSource source;
+    private final SourceCodeSource source;
     private Map<String, TokenType> simpleTokens;
     private Map<String, TokenType> keyWordsTokens;
 
@@ -74,7 +73,7 @@ public class Lexer {
         if (source.getCurrentChar() == '.') {
             number = checkAfterDotFound(number);
         } else {
-            Integer.parseInt(number);
+            Integer.parseInt(number); //overflow check
             return new Token(number, TokenType.INTEGER, new PositionInFile(position));
         }
 
@@ -92,9 +91,10 @@ public class Lexer {
 
         while (Character.isDigit(source.getCurrentChar())) {
             builder.append(source.getCurrentChar());
-            Double.parseDouble(builder.toString());
+            Double.parseDouble(builder.toString()); //overflow check
             source.readNextChar();
         }
+
 
         return builder.toString();
     }
@@ -106,7 +106,7 @@ public class Lexer {
 
         while (Character.isDigit(source.getCurrentChar())) {
             builder.append(source.getCurrentChar());
-            Double.parseDouble(builder.toString());
+            Double.parseDouble(builder.toString()); //overflow check
             source.readNextChar();
         }
 
@@ -158,19 +158,17 @@ public class Lexer {
                 { "}", TokenType.R_CURLYBRACKET },
                 { ";", TokenType.SEMICOL },
                 { ".", TokenType.DOT },
-                { ",", TokenType.COMMA },
-                { "]", TokenType.L_TYPEBRACKET },
-                { "[", TokenType.R_TYPEBRACKET }
+                { ",", TokenType.COMMA }
         }).collect(Collectors.toMap(data -> (String) data[0], data -> (TokenType) data[1]));
     }
 
     private void initializeKeyWordsTokens() {
         keyWordsTokens = Stream.of(new Object[][] {
-                { "struct", TokenType.STRUCT },
                 { "if", TokenType.IF },
                 { "elif", TokenType.ELIF },
                 { "else", TokenType.ELSE },
                 { "return", TokenType.RETURN },
+                { "while", TokenType.WHILE },
                 { "void", TokenType.VOID },
                 { "int", TokenType.VAR_TYPE },
                 { "double", TokenType.VAR_TYPE },
