@@ -3,6 +3,8 @@ import input.SourceCodeSource;
 import lexer.Lexer;
 import lexer.Token;
 import lexer.TokenType;
+import parser.Parser;
+import parser.tree.node.Program;
 import util.Constants;
 
 public class Main {
@@ -19,6 +21,10 @@ public class Main {
                 token = lexer.createNextToken();
                 System.out.println(token.toString());
             }
+
+            Parser parser = new Parser(lexer);
+            Program program = parser.parseProgram();
+            System.out.println(program.toString());
 
         }
     }
